@@ -130,7 +130,11 @@ body {
   transform: translate(-50%, -50%);
   opacity: 0.05;
   width: 40vw;
+  max-height: 70vh;
+  padding: 2rem 2rem;
   z-index: 0;
+  object-fit: contain;
+  height: auto;
 }
 
 .social-buttons {

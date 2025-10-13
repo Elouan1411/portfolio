@@ -1,49 +1,56 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Pour les icons  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <!-- En-tête -->
-    <header class="resume-header">
-      <div class="navi-lines">
-        <div class="navTrigger"><i></i><i></i><i></i></div>
-      </div>
-      <div class="logo">
-        <a href="#">
-          <span>Bonjour, je suis</span>
-          <strong id="word">Elouan BOITEUX</strong>
-        </a>
-      </div>
-      <nav class="fancy-menu">
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#skills">Compétences</a></li>
-          <li><a href="#history">Expérience</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
 
-    <!-- Section Accueil -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elouan BOITEUX | PortFolio</title>
+  <script src="script.js"></script>
+  <script src="translations.js"></script>
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Pour les icons  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
 
-    <section id="home" class="block">
- <div class="home-content">
+<body>
+  <!-- En-tête -->
+  <header class="resume-header">
+    <div class="navi-lines">
+      <div class="navTrigger"><i></i><i></i><i></i></div>
+    </div>
+    <div class="logo">
+      <img src="assets/img/profil.png" alt="Profil Elouan" class="profile-img">
+      <a href="#">
+        <!-- <span>Bonjour, je suis</span> -->
+        <strong id="word" data-key="title"></strong>
+      </a>
+    </div>
+    <nav class="fancy-menu">
+      <ul>
+        <li><a href="#portfolio">Mes projets</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#history">Expérience</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <div class="button-language">
+
+          <div class="language-switcher"><button class="language-button disabled">🇫🇷</button><button
+              class="language-button ">🇬🇧</button></div>
+        </div>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Section Accueil -->
+
+  <section id="home" class="block home-content-bloc">
+    <div class="home-content">
       <div class="my-personal-info">
         <div class="my-name-who">
           <span class="greeting">Hi, I'm</span>
           <h1 class="name">ELOUAN</h1>
           <h5 class="subtitle">
-            <i class="fa-solid fa-hexagon"></i> Étudiant en Informatique
+            Étudiant en Informatique
           </h5>
         </div>
         <img src="assets/icons/dev-light.png" class="background-icon" />
@@ -60,121 +67,219 @@
       <div class="terminal-effect terminal">
         <pre id="terminal-text"><span class="cursor">█</span></pre>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section À Propos -->
-    <section id="about" class="block">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <!-- Ajoutez votre photo ici -->
-            <img src="chemin/vers/votre-photo.jpg" alt="Votre Nom" />
+  <!-- Section À Propos -->
+  <section id="about" class="block">
+    <div class="container about">
+      <div class="about-image">
+        <img src="assets/img/profil.png" id="img-profil" alt="Portrait Elouan" />
+      </div>
+
+      <div class="about-content">
+        <div class="about-me-info">
+          <h2>À propos</h2>
+          <div class="text-a-propos">
+            <h3>Qui je suis</h3>
+            <p data-key="aProposQuiJeSuis"></p>
+            <h3>Mes centres d'intérêt</h3>
+            <p data-key="aProposCentresInteret"></p>
+            <a href="assets/docs/CV_Elouan_BOITEUX.pdf" class="theme-btn">
+              <i class="fa fa-download"></i> Télécharger mon CV
+            </a>
           </div>
-          <div class="col-md-6">
-            <div class="about-me-info">
-              <h3>À Propos</h3>
-              <p>
-                Je suis <strong>Elouan BOITEUX</strong>, étudiant en informatique, passionné par l'algo...
-              </p>
-              <ul class="info-myself">
-                <li><strong>Nom:</strong> Elouan BOITEUX</li>
-                <li><strong>Métier:</strong> Etudiant</li>
-                <li><strong>Age:</strong> <span class="age" data-birth="2005-11-14"></span> ans</li>
-                <li><strong>Localisation:</strong> Besançon</li>
-              </ul>
-              <a href="#" class="theme-btn">
-                <i class="fa fa-download"></i> TÉLÉCHARGER CV
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section Services -->
-    <!-- <section id="services" class="block"> -->
-    <!--   <div class="container"> -->
-    <!--     <h2>MES SERVICES</h2> -->
-    <!--     <div class="services-grid"> -->
-    <!--       <div class="service"> -->
-    <!--         <i class="fa fa-desktop"></i> -->
-    <!--         <h3>Service 1</h3> -->
-    <!--         <p>Description du service</p> -->
-    <!--       </div> -->
-    <!--     </div> -->
-    <!--   </div> -->
-    <!-- </section> -->
 
-    <!-- Section Portfolio -->
-    <section id="portfolio" class="block">
-      <div class="container">
-        <h2>MON PORTFOLIO</h2>
-        <div class="portfolio-grid">
-          <div class="portfolio-item">
-            <img src="chemin/projet1.jpg" alt="Projet 1" />
-            <div class="overlay">
-              <h3>Projet 1</h3>
-              <p>Description</p>
-            </div>
+
+
+  <!-- Section Portfolio -->
+  <section id="portfolio" class="block">
+    <div class="container">
+      <h2>Mes Projets</h2>
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item">
+          <img src="assets/projects/completion-semi-auto/illustration.png" alt="Completion semi automatique" />
+          <div class="overlay">
+            <h3>Completion semi-automatique</h3>
+            <p>Outil développé en Rust et Python qui analyse les mots que vous écrivez et propose les corrections les
+              plus
+              proches.</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Section Compétences -->
-    <section id="skills" class="block">
-      <div class="container">
-        <h2>MES COMPÉTENCES</h2>
+        <div class="portfolio-item">
+          <img src="assets/projects/autre-projet/illustration.png" alt="Projet 2" />
+          <div class="overlay">
+            <h3>Autre projet</h3>
+            <p>Description concise de ce projet.</p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Section Compétences -->
+  <section id="skills" class="block">
+    <div class="container">
+      <h2>Mes compétences</h2>
+      <div class="competences-container">
+        <div class="competences">
+          <h4>Compétence 1</h4>
+          <div class="progress-bar">
+            <div class="progress" style="width: 80%"></div>
+          </div>
+          <span>80%</span>
+        </div>
+      </div>
+      <div class="skills">
+        <h2>Langages et outils</h2>
         <div class="skills-container">
-          <div class="skill">
-            <h4>Compétence 1</h4>
-            <div class="progress-bar">
-              <div class="progress" style="width: 80%"></div>
-            </div>
-            <span>80%</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Section Expérience -->
-    <section id="history" class="block">
-      <div class="container">
-        <h2>MON PARCOURS</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-icon">
-              <i class="fa fa-briefcase"></i>
-            </div>
-            <div class="timeline-content">
-              <h3>Poste occupé</h3>
-              <span>2020 - 2023</span>
-              <p>Description de l'expérience</p>
+          <div class="skills-group">
+            <h3>Développement web</h3>
+            <div class="skills-grid">
+              <div class="skill"><img src="assets/icons/html.png" alt="HTML"><span>HTML</span></div>
+              <div class="skill"><img src="assets/icons/css.png" alt="CSS"><span>CSS</span></div>
+              <div class="skill"><img src="assets/icons/js.png" alt="JavaScript"><span>JavaScript</span></div>
+              <div class="skill"><img src="assets/icons/nodejs.png" alt="Node.js"><span>Node.js</span></div>
+              <div class="skill"><img src="assets/icons/php.svg" alt="PHP"><span>PHP</span></div>
+              <div class="skill"><img src="assets/icons/mysql.png" alt="MySQL"><span>MySQL</span></div>
             </div>
           </div>
+
+          <div class="skills-group">
+            <h3>Langages de programmation</h3>
+            <div class="skills-grid">
+              <div class="skill"><img src="assets/icons/c.png" alt="C"><span>C</span></div>
+              <div class="skill"><img src="assets/icons/cpp.png" alt="C++"><span>C++</span></div>
+              <div class="skill"><img src="assets/icons/java.svg" alt="Java"><span>Java</span></div>
+              <div class="skill"><img src="assets/icons/python.png" alt="Python"><span>Python</span></div>
+              <div class="skill"><img src="assets/icons/rust.png" alt="Rust"><span>Rust</span></div>
+            </div>
+          </div>
+
+          <div class="skills-group">
+            <h3>Systèmes et outils</h3>
+            <div class="skills-grid">
+              <div class="skill"><img src="assets/icons/bash.png" alt="Bash"><span>Bash</span></div>
+              <div class="skill"><img src="assets/icons/docker.png" alt="Docker"><span>Docker</span></div>
+              <div class="skill"><img src="assets/icons/git.png" alt="Git"><span>Git</span></div>
+              <div class="skill"><img src="assets/icons/latex.svg" alt="LaTeX"><span>LaTeX</span></div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </section>
 
-    <!-- Section Contact -->
-    <section id="contact" class="block">
-      <div class="container">
-        <h2>CONTACTEZ-MOI</h2>
-        <div class="contact-info">
-          <ul>
-            <li><i class="fa fa-map-marker"></i> Votre adresse</li>
-            <li><i class="fa fa-phone"></i> Votre téléphone</li>
-            <li><i class="fa fa-envelope"></i> Votre email</li>
-          </ul>
+    </div>
+  </section>
+
+  <section id="history" class="block">
+    <div class="container">
+      <h2>Mon parcours</h2>
+      <div class="timeline">
+
+        <!-- Baccalauréat 2023 -->
+        <div class="timeline-item left">
+          <div class="timeline-icon">
+            <i class="fa fa-graduation-cap"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>Baccalauréat Général Mention Très Bien</h3>
+            <span>2023</span>
+            <p>Spécialités : Mathématiques, Numérique et Sciences Informatiques<br>
+              Section sportive Escalade<br>
+              Lycée Claude Nicolas Ledoux, Besançon (25)</p>
+          </div>
         </div>
+
+        <!-- Licence Informatique -->
+        <div class="timeline-item right">
+          <div class="timeline-icon">
+            <i class="fa fa-university"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>Licence Informatique</h3>
+            <span>Depuis 2023 (actuellement en L3)</span>
+            <p>Option Cursus Master en Ingénierie<br>
+              Université Marie et Louis Pasteur, Besançon (25)</p>
+          </div>
+        </div>
+
+        <!-- Stage L1 -->
+        <div class="timeline-item left">
+          <div class="timeline-icon">
+            <i class="fa fa-briefcase"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>Stage L1 - Développement d'un logiciel</h3>
+            <span>2024 - 5 semaines</span>
+            <p>Cibest Solution, Besançon (25)<br>
+              Extraction de données via API<br>
+              Génération de rapports PDF et code-barres 2D<br>
+              Intégration avec un système de gestion pour suivi automatisé</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer avec Contact -->
+  <footer>
+    <section id="contact">
+      <div class="container contact-container">
+
+        <div class="contact-left">
+          <h2>Contactez-moi</h2>
+
+          <!-- Infos de contact -->
+          <div class="contact-info">
+            <ul>
+              <li><i class="fa fa-map-marker"></i> Besançon, FRANCE</li>
+              <li><i class="fa fa-envelope"></i>
+                <a href="mailto:elouan.boiteux@edu.univ-fcomte.fr">elouan.boiteux@edu.univ-fcomte.fr</a>
+              </li>
+              <li><i class="fa fa-phone"></i> +33 6 67 61 15 67</li>
+            </ul>
+          </div>
+
+          <!-- Réseaux -->
+          <div class="network">
+            <h3>Mes réseaux</h3>
+            <ul class="network-list">
+              <li><a href="https://www.linkedin.com/in/elouan-boiteux" target="_blank"><i
+                    class="fab fa-linkedin"></i></a></li>
+              <li><a href="https://github.com/elouan-boiteux" target="_blank"><i class="fab fa-github"></i></a></li>
+              <li><a href="mailto:elouan.boiteux@edu.univ-fcomte.fr"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <img src="assets/img/logo.png" alt="Logo Elouan">
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 BOITEUX Elouan. Tous droits réservés.</p>
       </div>
     </section>
+  </footer>
 
-    <!-- Pied de page -->
-    <footer>
-      <p>&copy; 2025 BOITEUX Elouan. Tous droits réservés.</p>
-    </footer>
 
-    <script src="script.js"></script>
-  </body>
+
+</body>
+
 </html>

@@ -102,8 +102,67 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-function runTerminalEffect() {
-    const lines = [
+
+// === Terminal principal + bouton ===
+document.addEventListener("DOMContentLoaded", () => {
+    function runTerminalEffect(lines, outputId, onFinish) {
+        const output = document.getElementById(outputId);
+        const cursor = output.querySelector(".cursor") || document.createElement("span");
+        cursor.className = "cursor";
+        cursor.textContent = "█";
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        const finishedLines = [];
+        let currentLineBuffer = "";
+
+        function applyStyle(text) {
+            return text.includes("$") ? `<span class="command-line">${text}</span>` : text;
+        }
+
+        function updateOutput() {
+            const isLastLineTyping = lineIndex === lines.length - 1;
+            output.innerHTML = finishedLines.join("\n") + (finishedLines.length > 0 && !isLastLineTyping ? "\n" : "") + currentLineBuffer + cursor.outerHTML;
+        }
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                if (onFinish) onFinish();
+                return;
+            }
+
+            const currentLine = lines[lineIndex];
+            if (currentLine.instant) {
+                finishedLines.push(applyStyle(currentLine.text));
+                updateOutput();
+                lineIndex++;
+                setTimeout(typeLine, 400);
+            } else {
+                if (charIndex < currentLine.text.length) {
+                    currentLineBuffer += currentLine.text[charIndex];
+                    charIndex++;
+                    updateOutput();
+                    setTimeout(typeLine, 30);
+                } else {
+                    finishedLines.push(applyStyle(currentLineBuffer));
+                    currentLineBuffer = "";
+                    charIndex = 0;
+                    updateOutput();
+                    lineIndex++;
+                    setTimeout(typeLine, 500);
+                }
+            }
+        }
+
+        updateOutput();
+        typeLine();
+    }
+    const closeBtn = document.querySelector(".close-btn");
+    const output = document.getElementById("terminal-text");
+    let showingSecret = false;
+
+    // Texte principal
+    const mainLines = [
         { text: "$ whoami", instant: false },
         { text: "elouan_boiteux", instant: true },
         { text: "$ cd ~/L3_Informatique", instant: false },
@@ -115,58 +174,44 @@ function runTerminalEffect() {
         { text: "$ ", instant: false },
     ];
 
-    const output = document.getElementById("terminal-text");
-    const cursor = document.querySelector(".cursor");
-    let lineIndex = 0;
-    let charIndex = 0;
-    const finishedLines = [];
-    let currentLineBuffer = "";
+    // Texte secret (sans [QR Code visible...])
+    const secretLines = [
+        { text: "> Accessing hidden directory...", instant: false },
+        { text: "> Decoding link...", instant: false },
+        { text: "> Success: CV located.", instant: false },
+    ];
 
-    function applyStyle(text) {
-        return text.includes("$") ? `<span class="command-line">${text}</span>` : text;
-    }
+    runTerminalEffect(mainLines, "terminal-text");
 
-    function updateOutput() {
-        // Si on est sur la dernière ligne en train d’être tapée,
-        // on n'ajoute pas de saut de ligne après currentLineBuffer.
-        // Sinon on en ajoute un (quand on a fini une ligne, ou pour les instant lines).
-        const isLastLineTyping = lineIndex === lines.length - 1;
-        output.innerHTML = finishedLines.join("\n") + (finishedLines.length > 0 && !isLastLineTyping ? "\n" : "") + currentLineBuffer + cursor.outerHTML;
-    }
+    closeBtn.addEventListener("click", () => {
+        output.innerHTML = '<span class="cursor">█</span>';
+        const existingQr = document.querySelector("#terminal-text img");
+        if (existingQr) existingQr.remove();
 
-    function typeLine() {
-        if (lineIndex >= lines.length) return;
+        if (!showingSecret) {
+            showingSecret = true;
 
-        const currentLine = lines[lineIndex];
-        const isLastLine = lineIndex === lines.length - 1;
+            runTerminalEffect(secretLines, "terminal-text", () => {
+                // Création et insertion du QR code au-dessus de la ligne "Alternatively"
+                const qr = document.createElement("img");
+                qr.src = "https://api.qrserver.com/v1/create-qr-code/?data=https://cv.elouanboiteux.fr&size=150x150";
+                qr.alt = "QR Code vers mon CV";
+                qr.className = "cv-qr";
 
-        if (currentLine.instant) {
-            finishedLines.push(applyStyle(currentLine.text));
-            updateOutput();
-            lineIndex++;
-            setTimeout(typeLine, 500);
+                // Ligne "Alternatively"
+                const alt = document.createElement("div");
+                alt.innerHTML = '<p class="cv-link">Alternatively: <a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
+
+                // Insérer dans le terminal
+                output.appendChild(qr);
+                output.appendChild(alt);
+            });
         } else {
-            if (charIndex < currentLine.text.length) {
-                currentLineBuffer += currentLine.text[charIndex];
-                charIndex++;
-                updateOutput();
-                setTimeout(typeLine, 30);
-            } else {
-                finishedLines.push(applyStyle(currentLineBuffer));
-                currentLineBuffer = "";
-                charIndex = 0;
-                updateOutput();
-                lineIndex++;
-                setTimeout(typeLine, 500);
-            }
+            showingSecret = false;
+            runTerminalEffect(mainLines, "terminal-text");
         }
-    }
-
-    updateOutput();
-    typeLine();
-}
-
-document.addEventListener("DOMContentLoaded", runTerminalEffect);
+    });
+});
 
 function calculateAge(birthDateString) {
     const today = new Date();

@@ -221,6 +221,8 @@ nav.fancy-menu ul li a:hover::after {
     justify-content: center;
     list-style: none;
     margin-top: 2rem;
+    gap: 1.5rem;
+    padding: 0;
 }
 
 .social-buttons li a {
@@ -231,16 +233,19 @@ nav.fancy-menu ul li a:hover::after {
     height: 40px;
     background: var(--main-color);
     color: white;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    margin: 0 10px;
-    transition: transform 0.3s;
     text-decoration: none;
+    font-size: 1.5rem;
     z-index: 1000;
     position: relative;
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
 .social-buttons li a:hover {
     transform: translateY(-5px);
+    background: var(--my-grey);
 }
 
 .terminal-effect {
@@ -254,7 +259,7 @@ nav.fancy-menu ul li a:hover::after {
     max-width: 600px;
     width: 35vw;
     line-height: 1.5em;
-    height: calc(1.5em * 11);
+    height: calc(1.5em * 13);
     /* margin-top: 2rem; */
     white-space: pre-wrap;
     position: relative;
@@ -269,6 +274,76 @@ nav.fancy-menu ul li a:hover::after {
 .terminal-text {
     position: relative;
     height: 100%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: var(--my-grey);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.3 ease;
+}
+
+.close-btn:hover {
+    background: var(--my-black);
+}
+
+#easter-egg {
+    margin-top: 1rem;
+    background-color: #111;
+    color: #0f0;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 35vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: "Fira Code", monospace;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 1s ease;
+}
+
+.secret-text {
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.cv-link {
+    margin-top: 0.5rem;
+    color: #cdd9e5;
+}
+
+.cv-link a {
+    color: #3cf;
+    text-decoration: none;
+}
+
+.cv-link a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Centrage du QR code */
+.cv-qr {
+    display: block;
+    margin: 1rem auto 1rem auto;
 }
 
 .command-line {

@@ -84,39 +84,58 @@ strong {
 .language-switcher {
     display: flex;
     flex-direction: row;
-    /* margin: 0 3rem; */
+    align-items: center;
 }
 
+/* Boutons de langue */
 .language-switcher button {
-    font-size: 1.7rem;
     background: none;
     border: none;
     margin-left: 0.7rem;
+    padding: 0;
     transition: transform 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.language-switcher.disabled {
-    pointer-events: none;
+/* Images des drapeaux */
+.language-switcher button img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: block;
 }
 
+/* Effet au survol */
 .language-switcher button:hover {
     transform: translateY(-5px);
 }
 
+/* Bouton actif (désactivé) */
+.language-switcher button.disabled {
+    cursor: default;
+}
+
+/* Supprime l’effet au survol du bouton actif */
 .language-switcher button.disabled:hover {
     transform: translateY(0);
 }
 
-.halo {
+/* Halo parfaitement rond et centré */
+.language-switcher button.disabled::before {
+    content: "";
     position: absolute;
-    width: 120%;
-    height: 120%;
+    width: 2.4rem; /* légèrement plus grand que l'image */
+    height: 2.4rem;
     background-color: #d8d8d8; /* gris clair */
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1; /* derrière le bouton */
+    z-index: -1;
 }
 
 nav.fancy-menu ul li a::after {

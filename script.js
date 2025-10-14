@@ -20,57 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Animation des lettres
-    // const wordElement = document.getElementById("word");
-    // if (wordElement) {
-    //   const words = ["Elouan\u00A0BOITEUX", "DEVELOPPEUR"];
-    //   let currentWordIndex = 0;
-    //
-    //   function animateWord() {
-    //     wordElement.textContent = words[currentWordIndex];
-    //     currentWordIndex = (currentWordIndex + 1) % words.length;
-    //   }
-    //
-    //   setInterval(animateWord, 3000);
-    // }
-
-    // const wordElement = document.getElementById("word");
-    // const words = ["Elouan BOITEUX", "DEVELOPPEUR"];
-    // let currentWordIndex = 0;
-    // let charIndex = words[currentWordIndex].length;
-    // let deleting = true;
-    //
-    // function animateWord() {
-    //   if (deleting) {
-    //     if (charIndex > 0) {
-    //       wordElement.textContent = words[currentWordIndex].slice(
-    //         0,
-    //         charIndex - 1,
-    //       );
-    //       charIndex--;
-    //       setTimeout(animateWord, 100);
-    //     } else {
-    //       deleting = false;
-    //       currentWordIndex = (currentWordIndex + 1) % words.length;
-    //       setTimeout(animateWord, 500);
-    //     }
-    //   } else {
-    //     if (charIndex < words[currentWordIndex].length) {
-    //       wordElement.textContent = words[currentWordIndex].slice(
-    //         0,
-    //         charIndex + 1,
-    //       );
-    //       charIndex++;
-    //       setTimeout(animateWord, 100);
-    //     } else {
-    //       deleting = true;
-    //       setTimeout(animateWord, 3000); // Pause avant suppression
-    //     }
-    //   }
-    // }
-    //
-    // animateWord();
-
     // Navigation fluide
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
@@ -120,9 +69,30 @@ document.addEventListener("DOMContentLoaded", () => {
             return text.includes("$") ? `<span class="command-line">${text}</span>` : text;
         }
 
+        // function updateOutput() {
+        //     const isLastLineTyping = lineIndex === lines.length - 1;
+        //     // output.innerHTML = finishedLines.join("\n") + (finishedLines.length > 0 && !isLastLineTyping ? "\n" : "") + currentLineBuffer + cursor.outerHTML;
+        //     // output.innerHTML =
+        //     //     finishedLines.join("\n") +
+        //     //     (finishedLines.length > 0 ? "\n" : "") + // <- ici : toujours ajouter \n si des lignes finies existent
+        //     //     currentLineBuffer +
+        //     //     cursor.outerHTML;
+        //     const isTyping = lineIndex < lines.length; // on tape encore une ligne
+        //     const separator = finishedLines.length > 0 && isTyping ? "\n" : "";
+        //     output.innerHTML = finishedLines.join("\n") + separator + currentLineBuffer + cursor.outerHTML;
+        // }
+
         function updateOutput() {
-            const isLastLineTyping = lineIndex === lines.length - 1;
-            output.innerHTML = finishedLines.join("\n") + (finishedLines.length > 0 && !isLastLineTyping ? "\n" : "") + currentLineBuffer + cursor.outerHTML;
+            let content = finishedLines.join("\n"); // lignes déjà terminées
+
+            // Ajouter currentLineBuffer uniquement si elle contient du texte
+            if (currentLineBuffer.length > 0) {
+                if (content.length > 0) content += "\n"; // saut de ligne avant la ligne en cours
+                content += currentLineBuffer;
+            }
+
+            // Toujours ajouter le curseur
+            output.innerHTML = content + cursor.outerHTML;
         }
 
         function typeLine() {
@@ -179,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { text: "> Accessing hidden directory...", instant: false },
         { text: "> Decoding link...", instant: false },
         { text: "> Success: CV located.", instant: false },
+        // { text: "", instant: true },
     ];
 
     runTerminalEffect(mainLines, "terminal-text");

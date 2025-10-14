@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elouan BOITEUX | PortFolio</title>
+  <title>Elouan BOITEUX | Etudiant en informatique à Besançon | PortFolio</title>
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script src="script.js"></script>
   <script src="translations.js"></script>
@@ -13,35 +13,78 @@
   <link rel="stylesheet" href="style.css" />
   <!-- Pour les icons  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta name="description"
+    content="Portfolio d'Elouan Boiteux, étudiant en informatique à l’Université Marie et Louis Pasteur de Besançon. Passionné par le développement informatique, à la recherche d’un stage de 3 mois et d’une alternance.">
+  <!-- Open Graph (Facebook, LinkedIn, Discord, etc.) -->
+  <meta property="og:title" content="Elouan Boiteux – Étudiant en Informatique à Besançon">
+  <meta property="og:description"
+    content="Portfolio d'Elouan Boiteux, passionné par le développement informatique. À la recherche d’un stage de 3 mois et d’une alternance.">
+  <meta property="og:image" content="https://elouanboiteux.fr/assets/img/preview.jpg">
+  <meta property="og:url" content="https://elouanboiteux.fr">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elouan Boiteux – Etudiant en Informatique à besançon">
+  <meta name="twitter:description"
+    content="Portfolio d’un étudiant passionné de développement. Recherche stage & alternance.">
+  <meta name="twitter:image" content="https://elouanboiteux.fr/assets/img/preview.jpg">
+
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Elouan Boiteux",
+  "jobTitle": "Étudiant en Informatique",
+  "description": "Étudiant en informatique à l’Université Marie et Louis Pasteur de Besançon, passionné par le développement informatique. À la recherche d’un stage de 3 mois et d’une alternance.",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "Université Marie et Louis Pasteur de Besançon"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Besançon",
+    "addressRegion": "Franche-Comté",
+    "addressCountry": "France"
+  },
+  "url": "https://elouanboiteux.fr",
+  "sameAs": [
+    "https://www.linkedin.com/in/elouan-boiteux",
+    "https://github.com/elouan1411"
+  ]
+}
+</script>
 
 </head>
 
 <body>
   <!-- En-tête -->
-  <header class="resume-header">
+  <header class="resume-header" id="top">
     <div class="navi-lines">
       <div class="navTrigger"><i></i><i></i><i></i></div>
     </div>
     <div class="logo">
       <img src="assets/img/profil.png" alt="Profil Elouan" class="profile-img">
-      <a href="#">
-        <!-- <span>Bonjour, je suis</span> -->
+      <a href="#top">
         <strong id="word" data-key="title"></strong>
       </a>
     </div>
     <nav class="fancy-menu">
       <ul>
-        <li><a href="#portfolio">Mes projets</a></li>
+        <li><a href="#portfolio">Projets</a></li>
         <li><a href="#skills">Compétences</a></li>
-        <li><a href="#history">Expérience</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <div class="button-language">
+        <li><a href="#history">Parcours</a></li>
+        <li><a href="#contact">Contacts</a></li>
+        <li>
+          <div class="button-language">
 
-          <div class="language-switcher">
-            <button class="language-button disabled"><img src="assets/img/fr.png" alt="drapeau francais"></button>
-            <button class="language-button "><img src="assets/img/en.png" alt="drapeau états unis"></button>
+            <div class="language-switcher">
+              <button class="language-button disabled"><img src="assets/img/fr.png" alt="drapeau francais"></button>
+              <button class="language-button "><img src="assets/img/en.png" alt="drapeau états unis"></button>
+            </div>
           </div>
-        </div>
+        </li>
       </ul>
     </nav>
   </header>
@@ -58,7 +101,7 @@
             Étudiant en Informatique
           </h5>
         </div>
-        <img src="assets/icons/dev-light.png" class="background-icon" />
+        <img src="assets/icons/dev-light.png" class="background-icon" alt="icon terminal en fond" />
         <ul class="social-buttons">
           <li><a href="https://www.linkedin.com/in/elouan-boiteux" target="_blank"><i class="fab fa-linkedin"></i></a>
           </li>
@@ -71,8 +114,7 @@
         <button class="close-btn">x</button>
         <pre id="terminal-text"><span class="cursor">█</span></pre>
       </div>
-
-
+    </div>
   </section>
 
   <!-- Section À Propos -->
@@ -235,7 +277,7 @@
   <section id="skills" class="block">
     <div class="container">
       <h2>Mes compétences</h2>
-      <div class="competences-container">
+      <!-- <div class="competences-container">
         <div class="competences">
           <h4>Compétence 1</h4>
           <div class="progress-bar">
@@ -243,9 +285,8 @@
           </div>
           <span>80%</span>
         </div>
-      </div>
+      </div> -->
       <div class="skills">
-        <h2>Langages et outils</h2>
         <div class="skills-container">
 
           <div class="skills-group">

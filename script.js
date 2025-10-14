@@ -91,25 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return text.includes("$") ? `<span class="command-line">${text}</span>` : text;
         }
 
-        // function updateOutput() {
-        //     const isLastLineTyping = lineIndex === lines.length - 1;
-        //     // output.innerHTML = finishedLines.join("\n") + (finishedLines.length > 0 && !isLastLineTyping ? "\n" : "") + currentLineBuffer + cursor.outerHTML;
-        //     // output.innerHTML =
-        //     //     finishedLines.join("\n") +
-        //     //     (finishedLines.length > 0 ? "\n" : "") + // <- ici : toujours ajouter \n si des lignes finies existent
-        //     //     currentLineBuffer +
-        //     //     cursor.outerHTML;
-        //     const isTyping = lineIndex < lines.length; // on tape encore une ligne
-        //     const separator = finishedLines.length > 0 && isTyping ? "\n" : "";
-        //     output.innerHTML = finishedLines.join("\n") + separator + currentLineBuffer + cursor.outerHTML;
-        // }
-
         function updateOutput() {
-            let content = finishedLines.join("\n"); // lignes déjà terminées
+            let content = finishedLines.join("\n");
 
-            // Ajouter currentLineBuffer uniquement si elle contient du texte
             if (currentLineBuffer.length > 0) {
-                if (content.length > 0) content += "\n"; // saut de ligne avant la ligne en cours
+                if (content.length > 0) content += "\n";
                 content += currentLineBuffer;
             }
 
@@ -154,25 +140,48 @@ document.addEventListener("DOMContentLoaded", () => {
     let showingSecret = false;
 
     // Texte principal
-    const mainLines = [
-        { text: "$ whoami", instant: false },
-        { text: "elouan_boiteux", instant: true },
-        { text: "$ cd ~/L3_Informatique", instant: false },
-        { text: "$ ls", instant: false },
-        { text: "projets/ presentation.txt", instant: true },
-        { text: "$ cat presentation.txt", instant: false },
-        { text: "A la recherche un stage de 3 mois", instant: true },
-        { text: "pour finaliser ma licence", instant: true },
-        { text: "$ ", instant: false },
-    ];
-
-    // Texte secret (sans [QR Code visible...])
-    const secretLines = [
-        { text: "> Accessing hidden directory...", instant: false },
-        { text: "> Decoding link...", instant: false },
-        { text: "> Success: CV located.", instant: false },
-        // { text: "", instant: true },
-    ];
+    let mainLines, secretLines;
+    if (window.innerWidth < 768) {
+        mainLines = [
+            { text: "$ whoami", instant: false },
+            { text: "elouan_boiteux", instant: true },
+            { text: "$ cd ~/L3_Informatique", instant: false },
+            { text: "$ ls", instant: false },
+            { text: "projets/ presentation.txt", instant: true },
+            { text: "$ cat presentation.txt", instant: false },
+            { text: "A la recherche d'un stage", instant: true },
+            { text: "de 3 mois pour finaliser", instant: true },
+            { text: "ma licence", instant: true },
+            { text: "$ ", instant: false },
+        ];
+        // Texte secret (sans [QR Code visible...])
+        secretLines = [
+            { text: "> Accessing hidden", instant: false },
+            { text: "directory...", instant: false },
+            { text: "> Decoding link...", instant: false },
+            { text: "> Success: CV located.", instant: false },
+            // { text: "", instant: true },
+        ];
+    } else {
+        mainLines = [
+            { text: "$ whoami", instant: false },
+            { text: "elouan_boiteux", instant: true },
+            { text: "$ cd ~/L3_Informatique", instant: false },
+            { text: "$ ls", instant: false },
+            { text: "projets/ presentation.txt", instant: true },
+            { text: "$ cat presentation.txt", instant: false },
+            { text: "A la recherche un stage de 3 mois", instant: true },
+            { text: "pour finaliser ma licence", instant: true },
+            { text: "$ ", instant: false },
+        ];
+        // Texte secret (sans [QR Code visible...])
+        secretLines = [
+            { text: "> Accessing hidden directory...", instant: false },
+            { text: "> Decoding link...", instant: false },
+            { text: "> Success: CV located.", instant: false },
+            // { text: "", instant: true },
+        ];
+    }
 
     runTerminalEffect(mainLines, "terminal-text");
 
@@ -185,18 +194,16 @@ document.addEventListener("DOMContentLoaded", () => {
             showingSecret = true;
 
             runTerminalEffect(secretLines, "terminal-text", () => {
-                // // Création et insertion du QR code au-dessus de la ligne "Alternatively"
-                // const qr = document.createElement("img");
-                // qr.src = "https://api.qrserver.com/v1/create-qr-code/?data=https://cv.elouanboiteux.fr&size=150x150";
-                // qr.alt = "QR Code vers mon CV";
-                // qr.className = "cv-qr";
+                const div = document.createElement("div");
 
                 // Ligne "Alternatively"
                 const alt = document.createElement("div");
-                alt.innerHTML = '<p class="cv-link">Alternatively: <a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
+                alt.innerHTML = '<p class="cv-link">Alternatively:\n<a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
 
                 // Insérer dans le terminal
-                output.appendChild(qrImage);
+                div.appendChild(qrImage);
+
+                output.appendChild(div);
                 output.appendChild(alt);
             });
         } else {

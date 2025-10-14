@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     const translations = {
         fr: {
-            title: "Je suis Elouan BOITEUX",
+            title: "Elouan BOITEUX",
             aProposQuiJeSuis:
                 "Je m’appelle Elouan BOITEUX, étudiant en L3 CMI Informatique à l’Université Marie et Louis Pasteur. Passionné par la programmation et le développement d’applications, j’aime transformer des idées originales en projets concrets.",
             aProposCentresInteret:
                 "Curieux et rigoureux, je travaille sur des projets personnels mêlant automatisation et applications ludiques. Mon objectif est de continuer à créer des expériences innovantes tout en explorant de nouvelles solutions techniques.",
         },
         en: {
-            title: "I am Elouan BOITEUX",
+            title: "Elouan BOITEUX",
         },
     };
 

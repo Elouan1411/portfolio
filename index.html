@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script src="script.js"></script>
   <script src="translations.js"></script>
+  <script src="age.js"></script>
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="style.css" />
   <!-- Pour les icons  -->
@@ -77,27 +78,82 @@
   <!-- Section À Propos -->
   <section id="about" class="block">
     <div class="container about">
-      <div class="about-image">
-        <img src="assets/img/profil.png" id="img-profil" alt="Portrait Elouan" />
-      </div>
 
-      <div class="about-content">
-        <div class="about-me-info">
+      <!-- Partie haute : photo + texte -->
+      <div class="about-top">
+        <div class="about-image">
+          <img src="assets/img/profil.png" id="img-profil" alt="Portrait Elouan" />
+        </div>
+
+        <div class="about-text">
           <h2>À propos</h2>
-          <div class="text-a-propos">
-            <h3>Qui je suis</h3>
-            <p data-key="aProposQuiJeSuis"></p>
-            <h3>Mes centres d'intérêt</h3>
-            <p data-key="aProposCentresInteret"></p>
-            <a href="assets/docs/CV_Elouan_BOITEUX.pdf" class="theme-btn">
-              <i class="fa fa-download"></i> Télécharger mon CV
-            </a>
+          <h3>Elouan Boiteux — <span class="2005-11-14"></span> ans</h3>
+          <div class="paragraph-icon">
+            <i class="fas fa-graduation-cap"></i>
+            <p>
+              Étudiant en L3 à <a href="https://www.umlp.fr/" target="_blank">l'université Marie et Louis Pasteur</a>,
+              je suis inscrit dans le <a href="https://www.umlp.fr/les-cmi/cmi-informatique" target="_blank">Cursus
+                Master en Ingénierie (CMI)</a>.
+            </p>
           </div>
 
+          <div class="paragraph-icon">
+            <i class="fas fa-briefcase"></i>
+            <p>
+              Ce cursus enrichit ma formation avec des <strong>projets en groupe</strong>, des <strong>cours
+                supplémentaires</strong>, un <strong>stage en
+                entreprise</strong> dès la première année,
+              ainsi que le développement de compétences en <strong>gestion de projets</strong>, <strong>communication
+                professionnelle</strong> et
+              rédaction de documents techniques.
+            </p>
+          </div>
+
+          <div class="paragraph-icon">
+            <i class="fas fa-laptop-code"></i>
+            <p>
+              Passionné par la <strong>programmation</strong> et le <strong>développement d’applications</strong>,
+              j’aime transformer mes idées en projets
+              concrets
+              et profiter de chaque opportunité pour <strong>découvrir</strong> et <strong>apprendre</strong> de
+              nouvelles technologies et techniques.
+            </p>
+          </div>
+
+          <a href="assets/docs/CV_Elouan_BOITEUX.pdf" class="theme-btn">
+            <i class="fa fa-download"></i> Télécharger mon CV
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Partie basse : 3 blocs côte à côte -->
+      <div class="about-bottom">
+        <div class="about-card">
+          <h4>Mes qualités</h4>
+          <ul>
+            <li>Dynamique</li>
+            <li>Autonome</li>
+            <li>Coopératif</li>
+            <li>Curieux</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h4>Mes objectifs</h4>
+          <p>Apprendre, créer, et partager des projets utiles et inspirants.</p>
+        </div>
+
+        <div class="about-card">
+          <h4>Mes centres d’intérêt</h4>
+          <p>Programmation, sport outdoor (escalade, vtt trail, montagne)</p>
         </div>
       </div>
     </div>
   </section>
+
+
 
 
 

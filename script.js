@@ -1,4 +1,26 @@
-// Menu mobile
+// Variable globale pour récupérer le QR plus tard
+let qrImage;
+
+function preloadQR() {
+    return new Promise((resolve, reject) => {
+        const qr = new Image();
+        qr.src = "https://api.qrserver.com/v1/create-qr-code/?data=https://cv.elouanboiteux.fr&size=150x150";
+        qr.alt = "QR Code vers mon CV";
+        qr.className = "cv-qr";
+
+        qr.onload = () => {
+            qrImage = qr; // stocke l'image pour l'utiliser plus tard
+            resolve(qr);
+        };
+        qr.onerror = () => reject("Erreur lors du préchargement du QR Code");
+    });
+}
+
+// Appel du preload
+preloadQR()
+    .then(() => console.log("QR Code préchargé et prêt à l’usage"))
+    .catch((err) => console.error(err));
+
 document.addEventListener("DOMContentLoaded", function () {
     const navTrigger = document.querySelector(".navTrigger");
     const fancyMenu = document.querySelector(".fancy-menu");
@@ -163,18 +185,18 @@ document.addEventListener("DOMContentLoaded", () => {
             showingSecret = true;
 
             runTerminalEffect(secretLines, "terminal-text", () => {
-                // Création et insertion du QR code au-dessus de la ligne "Alternatively"
-                const qr = document.createElement("img");
-                qr.src = "https://api.qrserver.com/v1/create-qr-code/?data=https://cv.elouanboiteux.fr&size=150x150";
-                qr.alt = "QR Code vers mon CV";
-                qr.className = "cv-qr";
+                // // Création et insertion du QR code au-dessus de la ligne "Alternatively"
+                // const qr = document.createElement("img");
+                // qr.src = "https://api.qrserver.com/v1/create-qr-code/?data=https://cv.elouanboiteux.fr&size=150x150";
+                // qr.alt = "QR Code vers mon CV";
+                // qr.className = "cv-qr";
 
                 // Ligne "Alternatively"
                 const alt = document.createElement("div");
                 alt.innerHTML = '<p class="cv-link">Alternatively: <a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
 
                 // Insérer dans le terminal
-                output.appendChild(qr);
+                output.appendChild(qrImage);
                 output.appendChild(alt);
             });
         } else {
@@ -182,22 +204,4 @@ document.addEventListener("DOMContentLoaded", () => {
             runTerminalEffect(mainLines, "terminal-text");
         }
     });
-});
-
-function calculateAge(birthDateString) {
-    const today = new Date();
-    const birthDate = new Date(birthDateString);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
-}
-
-document.querySelectorAll(".age").forEach((el) => {
-    const birthDate = el.getAttribute("data-birth");
-    if (birthDate) {
-        el.textContent = calculateAge(birthDate);
-    }
 });

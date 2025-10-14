@@ -18,6 +18,7 @@ body {
     --background-color: #f8f8f8;
     --my-grey: #333;
     --my-black: #111;
+    --gradient: linear-gradient(135deg, #007c89, #009fb1);
 }
 
 body {
@@ -920,15 +921,158 @@ a:hover {
     margin-bottom: 0.8rem;
 }
 
-.about-card p,
-.about-card ul {
-    color: var(--my-grey);
-    font-size: 1rem;
-    line-height: 1.5;
+/* --- Grille principale --- */
+.about-bottom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-.about-card ul {
-    list-style: disc inside;
+/* --- Carte principale --- */
+.about-card {
+    background: #fff;
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card h4 {
+    margin: 0;
+}
+
+.about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* --- En-tête des cartes --- */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.card-header i {
+    background: var(--main-color);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+/* --- Liste générique --- */
+.card-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #f6f9fa;
+    border-radius: 0.8rem;
+    padding: 0.8rem 1rem;
+    color: #333;
+    transition: background 0.3s;
+}
+
+.card-list li:hover {
+    background: rgba(0, 124, 137, 0.1);
+}
+
+.gradient .card-list li:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.card-list i {
+    color: var(--main-color);
+    font-size: 1rem;
+}
+
+.about-card .card-list li i,
+.about-card .card-list li .list-icon {
+    transition: transform 0.3s ease;
+}
+
+.about-card .card-list li:hover i {
+    transform: rotate(25deg) scale(1.1);
+}
+
+.objectives li {
+    align-items: flex-start;
+}
+
+.objectives .list-icon {
+    /* background: var(--main-color); */
+    /* color: #fff; */
+    /* border-radius: 10px; */
+    /* padding: 0.7rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.objectives .list-icon i {
+    color: white;
+}
+
+.card-list i {
+    font-size: 1.3rem;
+}
+
+.card-header i {
+    font-size: 1.4rem;
+}
+
+.objectives .list-text strong {
+    color: var(--main-color);
+    font-size: 1rem;
+}
+
+.gradient h4 {
+    color: white;
+}
+
+.objectives .list-text p {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0.2rem 0 0;
+}
+
+/* --- Carte dégradée (centres d’intérêt) --- */
+.about-card.gradient {
+    background: var(--gradient);
+    color: #fff;
+}
+
+.about-card.gradient .card-header i {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.about-card.gradient .card-list li {
+    background: rgba(255, 255, 255, 0.9);
+    color: #00454e;
+}
+
+.about-card.gradient .card-list li i,
+.objectives i {
+    background: var(--main-color);
+    color: #fff;
+    border-radius: 10px;
+    padding: 0.5rem;
 }
 
 /* Responsive */

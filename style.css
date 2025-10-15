@@ -1482,6 +1482,16 @@ div.video {
     padding: 2rem;
 }
 
+/* Rend la vidéo responsive */
+div.video video {
+    width: 100%;
+    height: auto;
+    max-width: 800px; /* limite la largeur sur grands écrans */
+    border-radius: 12px; /* optionnel : pour un effet plus soigné */
+    display: block;
+    margin: 0 auto;
+}
+
 .in-dev {
     font-size: 0.9em;
     color: #ff6600;

@@ -4,7 +4,7 @@ let qrImage;
 function preloadQR() {
     return new Promise((resolve, reject) => {
         const qr = new Image();
-        qr.src = "https://api.qrserver.com/v1/create-qr-code/?data=https://cv.elouanboiteux.fr&size=150x150";
+        qr.src = "assets/img/qr.png";
         qr.alt = "QR Code vers mon CV";
         qr.className = "cv-qr";
 

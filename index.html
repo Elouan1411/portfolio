@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script src="script.js"></script>
   <script src="translations.js"></script>
+  <script src="popup.js"></script>
   <script src="age.js"></script>
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="style.css" />
@@ -90,7 +91,7 @@
         <li><a href="#skills">Compétences</a></li>
         <li><a href="#history">Parcours</a></li>
         <li><a href="#contact">Contacts</a></li>
-        <li>
+        <!-- <li>
           <div class="button-language">
 
             <div class="language-switcher">
@@ -98,7 +99,7 @@
               <button class="language-button "><img src="assets/img/en.png" alt="drapeau états unis"></button>
             </div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </header>
@@ -109,7 +110,7 @@
     <div class="home-content">
       <div class="my-personal-info">
         <div class="my-name-who">
-          <span class="greeting">Hi, I'm</span>
+          <span class="greeting">Bonjour, c'est</span>
           <h1 class="name">ELOUAN</h1>
           <h5 class="subtitle">
             Étudiant en Informatique
@@ -176,7 +177,7 @@
             </p>
           </div>
 
-          <a href="assets/docs/CV_Elouan_BOITEUX.pdf" class="theme-btn">
+          <a href="assets/docs/CV_Elouan_BOITEUX.pdf" target="_blank" class="theme-btn">
             <i class="fa fa-download"></i> Télécharger mon CV
           </a>
 
@@ -263,28 +264,482 @@
       <h2>Mes Projets</h2>
       <div class="portfolio-grid">
 
+        <!-- ======== Carte du projet ======== -->
         <div class="portfolio-item">
-          <img src="assets/projects/completion-semi-auto/illustration.png" alt="Completion semi automatique" />
-          <div class="overlay">
-            <h3>Completion semi-automatique</h3>
-            <p>Outil développé en Rust et Python qui analyse les mots que vous écrivez et propose les corrections les
-              plus
-              proches.</p>
+          <div class="portfolio-image">
+            <a href="#" data-modal="modal1">
+              <img src="assets/projects/completion-semi-auto/illustration.png" alt="Completion semi automatique" />
+            </a>
+          </div>
+          <div class="portfolio-content">
+            <h3><a href="#" data-modal="modal1">Application de Completion semi-automatique</a></h3>
+            <p>Application de complétion semi-automatique développée en Rust et Python.
+              Elle propose des suggestions de mots intelligentes pour l'utilisateur en s’appuyant différentes approches.
+            </p>
+            <ul class="tech-list">
+              <li>Rust</li>
+              <li>Python</li>
+              <li>Linux</li>
+            </ul>
+            <div class="links">
+              <a href="#" data-modal="modal1"><i class="fa-solid fa-up-right-from-square"></i> Voir le projet</a>
+              <a href="https://github.com/Elouan1411/completion-auto" target="_blank"><i
+                  class="fa-brands fa-github"></i> Code
+                source</a>
+            </div>
           </div>
         </div>
 
+        <!-- ======== Fenêtre popup correspondante ======== -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <button class="close-btn-popup"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-image">
+              <img src="assets/projects/completion-semi-auto/illustration.png" alt="Completion semi automatique">
+            </div>
+
+            <div class="modal-body">
+              <h3>Application de Completion semi-automatique</h3>
+              <p>Application de complétion semi-automatique développée en Rust et Python.
+                Elle propose des suggestions de mots intelligentes pour l'utilisateur en s’appuyant différentes
+                approches.
+              </p>
+
+              <ul class="tech-list">
+                <li>Rust</li>
+                <li>Python</li>
+                <li>Linux</li>
+              </ul>
+
+              <div class="links">
+                <a href="https://github.com/Elouan1411/completion-auto" target="_blank"><i
+                    class="fa-brands fa-github"></i> Code
+                  source</a>
+              </div>
+
+              <hr>
+
+              <div class="project-description">
+                <p>
+                  La première étape de ce projet a consisté à réaliser un <strong>travail de recherche
+                    approfondi</strong>
+                  sur les techniques utilisées dans la complétion semi-automatique de texte.
+                  Ce travail, mené en collaboration avec ma camarade <strong>Samia Benali</strong>,
+                  s’inscrivait dans le cadre du <strong>Cursus Master Ingénierie (CMI)</strong> durant ma deuxième année
+                  de licence (L2).
+                </p>
+
+                <p>
+                  Nous avons étudié différentes approches utilisées par les systèmes modernes, notamment les
+                  <strong>algorithmes de distance d’édition</strong> tels que celui de <strong>Levenshtein</strong>,
+                  ainsi que l’usage des <strong>chaînes de Markov</strong> dans l’adaptation des suggestions en fonction
+                  du contexte
+                  ou de l’historique de l’utilisateur.
+                </p>
+
+                <p>
+                  À la suite de cette phase d’analyse, j’ai conçu et développé une <strong>application de complétion
+                    semi-automatique</strong>
+                  permettant de mettre en œuvre ces concepts de manière concrète.
+                  L’objectif est d’offrir des suggestions pertinentes à partir de mots partiellement saisis.
+                </p>
+
+                <div class="video">
+                  <video width="640" height="360" autoplay loop controls>
+                    <source src="assets/projects/completion-semi-auto/resultat.mp4" type="video/mp4">
+                  </video>
+                </div>
+
+                <p>
+                  L’application repose sur trois approches principales :
+                </p>
+
+                <ul>
+                  <li><strong>La distance de Levenshtein</strong> pour mesurer la similarité entre les mots et corriger
+                    les fautes de frappe ;</li>
+                  <li><strong>La reconnaissance de préfixes</strong> pour proposer rapidement des complétions adaptées
+                    aux premières lettres tapées ;</li>
+                  <li><strong>La fréquence d’utilisation</strong> pour favoriser les mots les plus couramment employés
+                    par l’utilisateur.</li>
+                </ul>
+
+
+                <br>
+
+                <p>
+                  Le cœur du projet est développé en <strong>Rust</strong>, garantissant performance et sécurité
+                  mémoire,
+                  tandis que <strong>Python</strong> gère la partie interface et automatisation.
+                  L’installation et l’exécution sont simplifiées grâce à une commande unique <code>make install</code>.
+                </p>
+
+                <p>
+                  Ce projet m’a permis de combiner <strong>travail de recherche</strong> et <strong>développement
+                    logiciel</strong>,
+                  tout en approfondissant mes connaissances en <strong>traitement du langage naturel</strong>,
+                  <strong>optimisation algorithmique</strong> et <strong>programmation système</strong>.
+                </p>
+
+                <div class="report-download">
+                  <a href="assets/projects/completion-semi-auto/report.pdf" target="_blank" class="download-btn">
+                    <i class="fa-solid fa-file-pdf"></i> Télécharger le rapport de recherche
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== Carte du projet ======== -->
         <div class="portfolio-item">
-          <img src="assets/projects/completion-semi-auto/illustration.png" alt="Projet 2" />
-          <div class="overlay">
-            <h3>Autre projet</h3>
-            <p>Description concise de ce projet.</p>
+          <div class="portfolio-image">
+            <a href="#" data-modal="modal2">
+              <img src="assets/projects/canyon-radar/illustration.png" alt="Canyon Radar" />
+            </a>
+          </div>
+          <div class="portfolio-content">
+            <h3><a href="#" data-modal="modal2">Canyon Radar 🧗‍♂️</a></h3>
+            <p>Application web pour planifier vos sorties canyoning. Choisissez un lieu ou utilisez votre position
+              actuelle, filtrez les canyons accessibles selon le temps de route et exportez les résultats pour
+              planification.</p>
+            <ul class="tech-list">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Node.js</li>
+            </ul>
+            <div class="links">
+              <a href="#" data-modal="modal2"><i class="fa-solid fa-up-right-from-square"></i> Voir le projet</a>
+              <a href="https://github.com/Elouan1411/CanyonRadar" target="_blank"><i class="fa-brands fa-github"></i>
+                Code source</a>
+              <span class="in-dev">🚧 En développement 🚧</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== Fenêtre popup correspondante ======== -->
+        <div id="modal2" class="modal">
+          <div class="modal-content">
+            <button class="close-btn-popup"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-image">
+              <img src="assets/projects/canyon-radar/illustration.png" alt="Canyon Radar">
+            </div>
+
+            <div class="modal-body">
+              <h3>Canyon Radar 🧗‍♂️</h3>
+              <p>
+                Application web pour planifier vos sorties canyoning. Choisissez un lieu ou utilisez votre position
+                actuelle,
+                filtrez les canyons accessibles selon le temps de route et exportez les résultats pour planification.
+              </p>
+
+              <ul class="tech-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Node.js</li>
+              </ul>
+
+              <div class="links">
+                <a href="https://github.com/Elouan1411/CanyonRadar" target="_blank"><i class="fa-brands fa-github"></i>
+                  Code source</a>
+              </div>
+
+              <hr>
+
+              <div class="project-description">
+                <p>
+                  Canyon Radar permet de trouver tous les canyons accessibles depuis un point donné en un temps de route
+                  maximal.
+                  Les résultats peuvent être exportés en CSV ou Excel pour organiser vos sorties.
+                </p>
+
+
+
+                <div class="visual-website">
+                  <a href="https://canyon-radar.elouanboiteux.fr" target="_blank">
+                    <i class="fa-solid fa-up-right-from-square"></i> Voir le site
+                  </a>
+                </div>
+
+                <p>
+                  Le projet utilise l’API OpenRouteService pour calculer les temps de trajet précis et un backend
+                  Node.js hébergé
+                  sur Vercel pour sécuriser la clé API.
+                </p>
+
+                <p>
+                  Les données des canyons sont stockées dans <code>data.json</code> et filtrées côté frontend pour
+                  afficher
+                  uniquement les lieux accessibles. Le frontend est développé en HTML, CSS et JavaScript.
+                </p>
+
+                <div class="video">
+                  <video width="640" height="360" autoplay loop controls>
+                    <source src="assets/projects/canyon-radar/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+
+                <p>
+                  Canyon Radar intègre plusieurs fonctionnalités clés :
+                </p>
+                <ul>
+                  <li><strong>Choix de la localisation</strong> : position actuelle ou point sur la carte ;</li>
+                  <li><strong>Filtrage par temps de trajet</strong> : limite les canyons accessibles ;</li>
+                  <li><strong>Exportation des résultats</strong> : CSV ou Excel pour planification et analyse.</li>
+                </ul>
+                <br>
+                <p>
+                  Ce projet m’a permis d’explorer l’intégration d’API tierces, la gestion de données géographiques
+                  et le développement d’une interface web interactive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== Carte du projet ======== -->
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <a href="#" data-modal="modal3">
+              <img src="assets/projects/centipede/illustration.png" alt="Centipede Game" />
+            </a>
+          </div>
+          <div class="portfolio-content">
+            <h3><a href="#" data-modal="modal3">Centipede Game 🐛</a></h3>
+            <p>
+              Jeu Centipede développé en Python avec la bibliothèque Pygame.
+              Contrôlez un nain pour tirer sur différents types d’ennemis à travers plusieurs niveaux de difficulté
+              progressive.
+              Le jeu enregistre automatiquement le meilleur score du joueur.
+            </p>
+            <ul class="tech-list">
+              <li>Python</li>
+              <li>Pygame</li>
+            </ul>
+            <div class="links">
+              <a href="#" data-modal="modal3"><i class="fa-solid fa-up-right-from-square"></i> Voir le projet</a>
+              <a href="https://github.com/Elouan1411/game-centipede-python" target="_blank">
+                <i class="fa-brands fa-github"></i> Code source
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== Fenêtre popup correspondante ======== -->
+        <div id="modal3" class="modal">
+          <div class="modal-content">
+            <button class="close-btn-popup"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-image">
+              <img src="assets/projects/centipede/illustration.png" alt="Centipede Game">
+            </div>
+
+            <div class="modal-body">
+              <h3>Centipede Game 🐛</h3>
+              <p>
+                <strong>Centipede Game</strong> est un projet réalisé dans le cadre du <strong>projet semestriel de L1
+                  en CMI Informatique</strong>.
+                Il s’agit de mon <strong>premier projet de développement de jeu vidéo</strong>, entièrement conçu en
+                <strong>Python</strong> à l’aide de <strong>Pygame</strong>.
+              </p>
+
+              <ul class="tech-list">
+                <li>Python</li>
+                <li>Pygame</li>
+              </ul>
+
+              <div class="links">
+                <a href="https://github.com/Elouan1411/game-centipede-python" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code source
+                </a>
+              </div>
+
+              <hr>
+
+              <div class="project-description">
+                <p>
+                  Le joueur incarne un nain et doit éliminer des vagues successives d’ennemis variés.
+                  À chaque nouveau niveau, la vitesse et le nombre d’ennemis augmentent, rendant le jeu de plus en plus
+                  difficile.
+                </p>
+
+                <p>
+                  Le jeu propose un <strong>système de niveaux</strong> progressif et <strong>une sauvegarde du meilleur
+                    score</strong> après chaque partie.
+                  La programmation a été réalisée en <strong>POO (Programmation Orientée Objet)</strong> avec
+                  l’utilisation de <strong>l’héritage</strong> pour structurer les entités du jeu (joueur, ennemis,
+                  projectiles...).
+                </p>
+
+                <p>
+                  Ce projet m’a permis de découvrir le développement de jeux 2D, la gestion d’événements clavier, les
+                  collisions, et les boucles principales de jeu.
+                </p>
+
+                <div class="video">
+                  <video width="640" height="360" autoplay loop muted controls>
+                    <source src="assets/projects/centipede/video.mp4" type="video/mp4">
+                  </video>
+                </div>
+
+                <p>
+                  Reconnaissances :
+                </p>
+                <ul>
+                  <li>Samia Benali pour la création des images utilisées dans le jeu ;</li>
+                  <li>Nos professeurs et mentors pour leur accompagnement pendant le projet.</li>
+                </ul>
+                <br>
+                <p>
+                  Un <strong>rapport de projet</strong> détaillant la conception, la structure du code et les choix
+                  techniques a également été rédigé dans le cadre de cette réalisation.
+                </p>
+                <div class="report-download">
+                  <a href="assets/projects/centipede/report.pdf" target="_blank" class="download-btn">
+                    <i class="fa-solid fa-file-pdf"></i> Télécharger le rapport de recherche
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== Carte du projet ======== -->
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <a href="#" data-modal="modal4">
+              <img src="assets/projects/rnday/illustration.png" alt="R&D Day - Promo 2025" />
+            </a>
+          </div>
+          <div class="portfolio-content">
+            <h3><a href="#" data-modal="modal4">R&D Day - Promo 2025 🎓</a></h3>
+            <p>
+              Site web officiel de la Journée Recherche & Développement organisé par notre promotion.
+              L’événement met en avant les avancées en informatique quantique et leur lien avec la physique
+              à travers des stands interactifs et des présentations accessibles à tous.
+            </p>
+            <ul class="tech-list">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>PHP</li>
+            </ul>
+            <div class="links">
+              <a href="#" data-modal="modal4"><i class="fa-solid fa-up-right-from-square"></i> Voir le projet</a>
+              <a href="https://github.com/Elouan1411/site-journee-rd" target="_blank">
+                <i class="fa-brands fa-github"></i> Code source
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======== Fenêtre popup correspondante ======== -->
+        <div id="modal4" class="modal">
+          <div class="modal-content">
+            <button class="close-btn-popup"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-image">
+              <img src="assets/projects/rnday/illustration.png" alt="R&D Day - Promo 2025">
+            </div>
+
+            <div class="modal-body">
+              <h3>📌 R&D Day - Promo 2025</h3>
+              <p>
+                Ce site présente la <strong>Journée Recherche & Développement</strong> organisée par notre promotion du
+                CMI Informatique.
+                L’édition met en avant les avancées en <strong>informatique quantique</strong> et leur lien avec la
+                <strong>physique</strong>,
+                sous le thème :
+              </p>
+
+              <p>🎭 <em>Physique et informatique quantique : le duo qui redéfinit l’avenir</em></p>
+
+              <ul class="tech-list">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>PHP</li>
+              </ul>
+
+              <div class="links">
+                <a href="https://rnday.ofni.asso.fr" target="_blank">
+                  <i class="fa-solid fa-up-right-from-square"></i> Voir le site
+                </a>
+                <a href="https://github.com/Elouan1411/site-journee-rd" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code source
+                </a>
+              </div>
+
+              <hr>
+
+              <div class="project-description">
+                <p>
+                  L’événement met en lumière les travaux de recherche et d’innovation des étudiants à travers des
+                  <strong>stands interactifs</strong>, des <strong>présentations scientifiques</strong> et des
+                  <strong>activités ouvertes à tous</strong>.
+                </p>
+
+                <p>
+                  Le site a été <strong>refondu en binôme</strong> avec un camarade afin de <strong>moderniser son
+                    interface</strong>
+                  et d’améliorer l’<strong>expérience utilisateur</strong>.
+                  Nous avons également adapté l’identité visuelle et le contenu au <strong>thème de la journée</strong>
+                  que nous avions choisi :
+                  <em>« Physique et informatique quantique : le duo qui redéfinit l’avenir »</em>.
+                </p>
+
+                <p>
+                  Cette refonte avait pour objectif de rendre la navigation plus fluide et de permettre aux visiteurs de
+                  <strong>se projeter pleinement dans l’événement</strong> grâce à une présentation claire, immersive et
+                  cohérente avec l’esprit de la journée.
+                </p>
+
+                <p>
+                  Le site offre ainsi une <strong>navigation responsive</strong>, permettant d’accéder facilement au
+                  <strong>programme de la journée</strong>, aux <strong>informations pratiques</strong> (lieu, horaires,
+                  organisation),
+                  ainsi qu’à la <strong>présentation du thème principal</strong>.
+                </p>
+
+                <p>
+                  <strong>Fonctionnalités principales :</strong>
+                </p>
+                <ul>
+                  <li>Présentation du thème et du programme de la journée ;</li>
+                  <li>Informations pratiques sur l’organisation de l’événement ;</li>
+                  <li>Mise en avant des stands et activités ;</li>
+                  <li>Design responsive pour une consultation sur mobile et PC.</li>
+                </ul>
+                <br>
+                <p>
+                  <strong>Déploiement :</strong> le site est hébergé sur <a href="https://rnday.ofni.asso.fr/index.php"
+                    target="_blank">ofni.asso.fr</a>.
+                </p>
+
+                <p>
+                  <strong>Remerciements :</strong>
+                  ce site repose sur une base développée par nos prédécesseurs de la promotion précédente,
+                  que nous avons adaptée et améliorée pour cette édition.
+                  Un grand merci à eux pour leur travail et leur transmission ! 🎓
+                </p>
+              </div>
+
+
+            </div>
           </div>
         </div>
 
 
-      </div>
-    </div>
+
+      </div> <!-- portfolio-grid-->
+
+
+
   </section>
+
 
 
   <!-- Section Compétences -->

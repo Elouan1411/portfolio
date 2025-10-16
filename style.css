@@ -232,6 +232,7 @@ nav.fancy-menu ul li a:hover::after {
     transform: translate(-50%, -50%);
     opacity: 0.05;
     width: 40vw;
+    max-width: 750px;
     max-height: 70vh;
     padding: 2rem 2rem;
     z-index: 0;
@@ -292,6 +293,7 @@ nav.fancy-menu ul li a:hover::after {
     border-left: 6px solid #313132;
     display: flex;
     align-items: center;
+    z-index: 10;
 }
 
 .terminal-text {

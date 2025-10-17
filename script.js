@@ -17,9 +17,7 @@ function preloadQR() {
 }
 
 // Appel du preload
-preloadQR()
-    .then(() => console.log("QR Code préchargé et prêt à l’usage"))
-    .catch((err) => console.error(err));
+preloadQR().catch((err) => console.error(err));
 
 document.addEventListener("DOMContentLoaded", function () {
     const navTrigger = document.querySelector(".navTrigger");

@@ -149,9 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
             { text: "$ ls", instant: false },
             { text: "projets/ presentation.txt", instant: true },
             { text: "$ cat presentation.txt", instant: false },
-            { text: "A la recherche d'un stage", instant: true },
-            { text: "de 3 mois pour finaliser", instant: true },
-            { text: "ma licence", instant: true },
+            { text: "Stagiaire chez Informaniak", instant: true },
+            { text: "Dev Android / Kotlin", instant: true },
             { text: "$ ", instant: false },
         ];
         // Texte secret (sans [QR Code visible...])
@@ -170,8 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
             { text: "$ ls", instant: false },
             { text: "projets/ presentation.txt", instant: true },
             { text: "$ cat presentation.txt", instant: false },
-            { text: "A la recherche un stage de 3 mois", instant: true },
-            { text: "pour finaliser ma licence", instant: true },
+            { text: "Stagiaire chez Informaniak", instant: true },
+            { text: "Dev Android / Kotlin", instant: true },
             { text: "$ ", instant: false },
         ];
         // Texte secret (sans [QR Code visible...])

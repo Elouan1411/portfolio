@@ -18,11 +18,11 @@
   <!-- Pour les icons  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <meta name="description"
-    content="Portfolio d'Elouan Boiteux, étudiant en informatique à l’Université Marie et Louis Pasteur de Besançon. Passionné par le développement informatique, à la recherche d’un stage de 3 mois et d’une alternance.">
+    content="Portfolio d'Elouan Boiteux, étudiant en informatique. Actuellement en stage de 5 mois chez Informaniak en développement application mobile Android sur Kotlin.">
   <!-- Open Graph (Facebook, LinkedIn, Discord, etc.) -->
   <meta property="og:title" content="Elouan BOITEUX | Portfolio | Etudiant en informatique à Besançon">
   <meta property="og:description"
-    content="Portfolio d'Elouan Boiteux, passionné par le développement informatique. À la recherche d’un stage de 3 mois et d’une alternance.">
+    content="Portfolio d'Elouan Boiteux. Actuellement en stage de 5 mois chez Informaniak en développement application mobile Android sur Kotlin.">
   <meta property="og:image" content="https://elouanboiteux.fr/assets/img/preview.jpg">
   <meta property="og:url" content="https://elouanboiteux.fr">
   <meta property="og:type" content="website">
@@ -31,7 +31,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Elouan BOITEUX | Portfolio | Etudiant en informatique à Besançon">
   <meta name="twitter:description"
-    content="Portfolio d’un étudiant passionné de développement. Recherche stage & alternance.">
+    content="Portfolio d’un étudiant passionné de développement. Actuellement en stage chez Informaniak (Dev Mobile Android / Kotlin).">
   <meta name="twitter:image" content="https://elouanboiteux.fr/assets/img/preview.jpg">
 
   <meta name="color-scheme" content="light">
@@ -57,8 +57,8 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Elouan Boiteux",
-  "jobTitle": "Étudiant en Informatique",
-  "description": "Étudiant en informatique à l’Université Marie et Louis Pasteur de Besançon, passionné par le développement informatique. À la recherche d’un stage de 3 mois et d’une alternance.",
+  "jobTitle": "Étudiant en Informatique & Stagiaire Android",
+  "description": "Étudiant en informatique à l’Université Marie et Louis Pasteur de Besançon. Actuellement en stage de 5 mois chez Informaniak en développement application mobile Android sur Kotlin.",
   "affiliation": {
     "@type": "CollegeOrUniversity",
     "name": "Université Marie et Louis Pasteur de Besançon"
@@ -119,7 +119,7 @@
           <span class="greeting">Bonjour, c'est</span>
           <h1 class="name">ELOUAN</h1>
           <h5 class="subtitle">
-            Étudiant en Informatique
+            Stagiaire Développeur Android Kotlin chez Informaniak
           </h5>
         </div>
         <img src="assets/icons/dev-light.png" class="background-icon" alt="icon terminal en fond" />
@@ -157,6 +157,15 @@
               Étudiant en L3 à <a href="https://www.umlp.fr/" target="_blank">l'université Marie et Louis Pasteur</a>,
               je suis inscrit dans le <a href="https://www.umlp.fr/les-cmi/cmi-informatique" target="_blank">Cursus
                 Master en Ingénierie (CMI)</a>.
+            </p>
+          </div>
+
+          <div class="paragraph-icon">
+            <i class="fas fa-mobile-alt"></i>
+            <p>
+              Actuellement en <strong>stage de 5 mois</strong> chez <strong>Informaniak</strong>.
+              Je travaille sur le <strong>développement d'application mobile Android</strong> en
+              <strong>Kotlin</strong>.
             </p>
           </div>
 
@@ -269,6 +278,35 @@
     <div class="container">
       <h2>Mes Projets</h2>
       <div class="portfolio-grid">
+
+        <!-- ======== Carte du projet ======== -->
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <a href="#" data-modal="modal5">
+              <img src="assets/projects/tuneflow/illustration.png" alt="TuneFlow App" />
+            </a>
+          </div>
+          <div class="portfolio-content">
+            <h3><a href="#" data-modal="modal5">TuneFlow - Découverte Musicale 🎵</a></h3>
+            <p>
+              Application Android native développée en Kotlin en 7 jours.
+              TuneFlow propose des recommandations musicales personnalisées, la gestion de playlists et une interface
+              moderne.
+            </p>
+            <ul class="tech-list">
+              <li>Kotlin</li>
+              <li>Android SDK</li>
+              <li>API</li>
+              <li>Algorithme de recommandation</li>
+            </ul>
+            <div class="links">
+              <a href="#" data-modal="modal5"><i class="fa-solid fa-up-right-from-square"></i> Plus de détails</a>
+              <a href="https://github.com/Elouan1411/TuneFlow" target="_blank">
+                <i class="fa-brands fa-github"></i> Code source
+              </a>
+            </div>
+          </div>
+        </div>
 
         <!-- ======== Carte du projet ======== -->
         <div class="portfolio-item">
@@ -738,6 +776,75 @@
           </div>
         </div>
 
+        <!-- ======== Fenêtre popup correspondante ======== -->
+        <div id="modal5" class="modal">
+          <div class="modal-content">
+            <button class="close-btn-popup"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="modal-image">
+              <img src="assets/projects/tuneflow/illustration.png" alt="TuneFlow App">
+            </div>
+
+            <div class="modal-body">
+              <h3>TuneFlow - Découverte Musicale 🎵</h3>
+              <p>
+                <strong>TuneFlow</strong> est une application Android native développée de zéro en <strong>7
+                  jours</strong>.
+                Ce projet était un défi pour apprendre <strong>Kotlin</strong> et l'écosystème <strong>Android</strong>
+                de manière intensive.
+              </p>
+
+              <ul class="tech-list">
+                <li>Kotlin</li>
+                <li>Android SDK</li>
+                <li>API</li>
+              </ul>
+
+              <div class="links">
+                <a href="https://github.com/Elouan1411/TuneFlow" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code source
+                </a>
+                <a href="https://github.com/Elouan1411/TuneFlow/releases/tag/v1.0" target="_blank">
+                  <i class="fa-solid fa-download"></i> Télécharger l'APK
+                </a>
+              </div>
+
+              <hr>
+
+              <div class="project-description">
+                <p>
+                  L'objectif de ce projet était de maîtriser la syntaxe de Kotlin et les principes fondamentaux du
+                  développement Android (Activités, Fragments, Cycles de vie, RecyclerView).
+                </p>
+
+                <p>
+                  TuneFlow permet aux utilisateurs de :
+                </p>
+                <ul>
+                  <li><strong>Découvrir</strong> de nouvelles musiques basées sur leurs goûts (algorithme de
+                    recommandation) ;</li>
+                  <li>Créer et gérer des <strong>playlists</strong> ;</li>
+                  <li>Partager des playlists avec des amis ;</li>
+                  <li>Explorer des musiques par <strong>humeur</strong> ;</li>
+                  <li>Profiter d'un mode <strong>clair</strong> et <strong>sombre</strong>.</li>
+                </ul>
+
+                <div class="video">
+                  <video width="300" height="533" autoplay loop muted controls style="max-width: 300px;">
+                    <source src="assets/projects/tuneflow/demo.mp4" type="video/mp4">
+                  </video>
+                </div>
+
+                <p>
+                  Plus d'informations sont disponibles sur le dépôt GitHub, y compris le code source complet et la
+                  version <a href="https://github.com/Elouan1411/TuneFlow/releases/tag/v1.0"
+                    target="_blank">téléchargeable</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
       </div> <!-- portfolio-grid-->
@@ -784,6 +891,7 @@
               <div class="skill"><img src="assets/icons/java.svg" alt="Java"><span>Java</span></div>
               <div class="skill"><img src="assets/icons/python.png" alt="Python"><span>Python</span></div>
               <div class="skill"><img src="assets/icons/rust.png" alt="Rust"><span>Rust</span></div>
+              <div class="skill"><img src="assets/icons/kotlin.png" alt="Kotlin"><span>Kotlin</span></div>
             </div>
           </div>
 

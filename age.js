@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("contentLoaded", () => {
     function calculateAge(birthDate) {
         const birth = new Date(birthDate);
         const today = new Date();

@@ -21,30 +21,45 @@ preloadQR()
     .then(() => console.log("QR Code préchargé et prêt à l’usage"))
     .catch((err) => console.error(err));
 
-document.addEventListener("DOMContentLoaded", function () {
+function initScripts() {
+    console.log("Script.js: Initialisation des composants interactifs...");
+
+    // === Navigation Menu ===
     const navTrigger = document.querySelector(".navTrigger");
     const fancyMenu = document.querySelector(".fancy-menu");
 
-    navTrigger.addEventListener("click", function () {
-        this.classList.toggle("active");
-        fancyMenu.classList.toggle("active");
-    });
+    if (navTrigger && fancyMenu) {
+        navTrigger.addEventListener("click", function () {
+            this.classList.toggle("active");
+            fancyMenu.classList.toggle("active");
+        });
+    }
 
-    // Animation du header
+    // === Header Animation ===
     window.addEventListener("scroll", function () {
         const header = document.querySelector(".resume-header");
+        if (!header) return;
+
         if (window.scrollY > 100) {
             header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
             header.style.background = "#fff";
         } else {
             header.style.boxShadow = "none";
-            // header.style.background = "transparent";
+        }
+
+        if (window.scrollY > 0) {
+            header.classList.add("shrink");
+        } else {
+            header.classList.remove("shrink");
         }
     });
 
-    // Navigation fluide
+    // === Smooth Scroll ===
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
+            // Ignore modal links
+            if (this.hasAttribute("data-modal")) return;
+
             e.preventDefault();
             const target = document.querySelector(this.getAttribute("href"));
 
@@ -55,30 +70,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
 
-            // Fermer le menu sur mobile après le clic
-            if (window.innerWidth <= 768) {
+            // Close menu on mobile
+            if (window.innerWidth <= 768 && navTrigger && fancyMenu) {
                 navTrigger.classList.remove("active");
                 fancyMenu.classList.remove("active");
             }
         });
     });
 
-    window.addEventListener("scroll", function () {
-        const header = document.querySelector(".resume-header");
+    // === Terminal ===
+    initTerminal();
+}
 
-        if (window.scrollY > 0) {
-            header.classList.add("shrink"); // réduit le header
-        } else {
-            header.classList.remove("shrink"); // remet à la taille normale
-        }
-    });
-});
+function initTerminal() {
+    const output = document.getElementById("terminal-text");
+    const closeBtn = document.querySelector(".close-btn");
 
-// === Terminal principal + bouton ===
-document.addEventListener("DOMContentLoaded", () => {
+    if (!output) return;
+
     function runTerminalEffect(lines, outputId, onFinish) {
-        const output = document.getElementById(outputId);
-        const cursor = output.querySelector(".cursor") || document.createElement("span");
+        const outputEl = document.getElementById(outputId);
+        if (!outputEl) return;
+
+        const cursor = outputEl.querySelector(".cursor") || document.createElement("span");
         cursor.className = "cursor";
         cursor.textContent = "█";
 
@@ -93,14 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateOutput() {
             let content = finishedLines.join("\n");
-
             if (currentLineBuffer.length > 0) {
                 if (content.length > 0) content += "\n";
                 content += currentLineBuffer;
             }
-
-            // Toujours ajouter le curseur
-            output.innerHTML = content + cursor.outerHTML;
+            outputEl.innerHTML = content + cursor.outerHTML;
         }
 
         function typeLine() {
@@ -135,12 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
         updateOutput();
         typeLine();
     }
-    const closeBtn = document.querySelector(".close-btn");
-    const output = document.getElementById("terminal-text");
-    let showingSecret = false;
 
-    // Texte principal
+    let showingSecret = false;
     let mainLines, secretLines;
+
     if (window.innerWidth < 768) {
         mainLines = [
             { text: "$ whoami", instant: false },
@@ -153,13 +162,11 @@ document.addEventListener("DOMContentLoaded", () => {
             { text: "Dev Android / Kotlin", instant: true },
             { text: "$ ", instant: false },
         ];
-        // Texte secret (sans [QR Code visible...])
         secretLines = [
             { text: "> Accessing hidden", instant: false },
             { text: "directory...", instant: false },
             { text: "> Decoding link...", instant: false },
             { text: "> Success: CV located.", instant: false },
-            // { text: "", instant: true },
         ];
     } else {
         mainLines = [
@@ -173,41 +180,86 @@ document.addEventListener("DOMContentLoaded", () => {
             { text: "Dev Android / Kotlin", instant: true },
             { text: "$ ", instant: false },
         ];
-        // Texte secret (sans [QR Code visible...])
         secretLines = [
             { text: "> Accessing hidden directory...", instant: false },
             { text: "> Decoding link...", instant: false },
             { text: "> Success: CV located.", instant: false },
-            // { text: "", instant: true },
         ];
     }
 
+    // Start initial effect
     runTerminalEffect(mainLines, "terminal-text");
 
-    closeBtn.addEventListener("click", () => {
-        output.innerHTML = '<span class="cursor">█</span>';
-        const existingQr = document.querySelector("#terminal-text img");
-        if (existingQr) existingQr.remove();
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            output.innerHTML = '<span class="cursor">█</span>';
+            const existingQr = document.querySelector("#terminal-text img");
+            if (existingQr) existingQr.remove();
 
-        if (!showingSecret) {
-            showingSecret = true;
+            if (!showingSecret) {
+                showingSecret = true;
+                runTerminalEffect(secretLines, "terminal-text", () => {
+                    const div = document.createElement("div");
+                    const alt = document.createElement("div");
+                    alt.innerHTML =
+                        '<p class="cv-link">Alternatively:\n<a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
+                    div.appendChild(qrImage);
+                    output.appendChild(div);
+                    output.appendChild(alt);
+                });
+            } else {
+                showingSecret = false;
+                runTerminalEffect(mainLines, "terminal-text");
+            }
+        });
+    }
+}
 
-            runTerminalEffect(secretLines, "terminal-text", () => {
-                const div = document.createElement("div");
+// === Event Listener for Dynamic Content ===
+document.addEventListener("contentLoaded", initScripts);
 
-                // Ligne "Alternatively"
-                const alt = document.createElement("div");
-                alt.innerHTML = '<p class="cv-link">Alternatively:\n<a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
+if (document.querySelector(".navTrigger")) {
+    initScripts();
+}
 
-                // Insérer dans le terminal
-                div.appendChild(qrImage);
-
-                output.appendChild(div);
-                output.appendChild(alt);
-            });
+document.body.addEventListener("click", (e) => {
+    const trigger = e.target.closest("[data-modal]");
+    if (trigger) {
+        e.preventDefault();
+        const modalId = trigger.getAttribute("data-modal");
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
         } else {
-            showingSecret = false;
-            runTerminalEffect(mainLines, "terminal-text");
+            console.error("Popup not found:", modalId);
         }
-    });
+    }
+});
+
+document.body.addEventListener("click", (e) => {
+    if (e.target.closest(".close-btn-popup")) {
+        const modal = e.target.closest(".modal");
+        if (modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+    }
+});
+
+document.body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal")) {
+        e.target.classList.remove("active");
+        document.body.style.overflow = "auto";
+    }
+});
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        const activeModal = document.querySelector(".modal.active");
+        if (activeModal) {
+            activeModal.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+    }
 });

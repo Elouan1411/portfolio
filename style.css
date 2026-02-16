@@ -43,9 +43,9 @@ strong {
 /* HEADER */
 .resume-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 1rem 0;
     background: #fff;
     position: fixed;
     width: 100%;
@@ -58,9 +58,23 @@ strong {
         padding 0.5s ease;
 }
 
+.header-limit {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
 .logo a {
     text-decoration: none;
     color: var(--main-color);
+}
+
+.navi-lines {
+    display: none;
 }
 
 .logo strong {
@@ -651,15 +665,16 @@ nav.fancy-menu ul li a:hover::after {
 
 @media screen and (max-width: 768px) {
     /* Bouton hamburger */
+    .navi-lines {
+        display: block;
+    }
+
     .navTrigger {
-        position: fixed;
-        top: 20px;
-        right: 20px;
         cursor: pointer;
         z-index: 1200;
-
         user-select: none;
         caret-color: transparent;
+        display: block;
     }
 
     .navTrigger i {
@@ -688,7 +703,7 @@ nav.fancy-menu ul li a:hover::after {
 
     /* Pour que le logo ne soit pas masqué par le bouton hamburger */
     header .logo {
-        margin-right: 80px;
+        margin-right: 0;
     }
 
     /* Bandeau du menu latéral avec fond (glissant depuis la droite) */
@@ -751,6 +766,11 @@ nav.fancy-menu ul li a:hover::after {
     display: flex;
     align-items: center;
     gap: 10px; /* Espace entre l'image et le texte */
+    transition: gap 0.3s ease;
+}
+
+.resume-header.shrink .logo {
+    gap: 0;
 }
 
 .logo img {
@@ -1094,20 +1114,25 @@ a:hover {
 
 .resume-header.shrink {
     height: 70px; /* hauteur réduite au scroll */
-    padding: 0.5rem 5%; /* padding réduit pour effet fluide */
+    padding: 0.5rem 0; /* padding réduit pour effet fluide */
 }
 
 .profile-img {
     opacity: 1;
+    width: 6rem;
+    margin-right: 0;
     transition:
         opacity 0.3s ease,
-        transform 0.3s ease;
+        transform 0.3s ease,
+        width 0.3s ease,
+        margin 0.3s ease;
 }
 
 .resume-header.shrink .profile-img {
     opacity: 0; /* image disparaît */
     transform: scale(0.5); /* image rétrécie un peu */
-    /* width: garder la largeur pour ne pas faire sauter le header */
+    width: 0;
+    margin: 0;
 }
 
 .skills {

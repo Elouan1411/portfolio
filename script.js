@@ -222,7 +222,23 @@ if (document.querySelector(".navTrigger")) {
     initScripts();
 }
 
+// Helper function to close modal and stop videos
+function closeModal(modal) {
+    if (!modal) return;
+
+    modal.classList.remove("active");
+    document.body.style.overflow = "auto";
+
+    // Stop any playing videos
+    const videos = modal.querySelectorAll("video");
+    videos.forEach((video) => {
+        video.pause();
+        video.currentTime = 0;
+    });
+}
+
 document.body.addEventListener("click", (e) => {
+    // Open modal
     const trigger = e.target.closest("[data-modal]");
     if (trigger) {
         e.preventDefault();
@@ -235,31 +251,22 @@ document.body.addEventListener("click", (e) => {
             console.error("Popup not found:", modalId);
         }
     }
-});
 
-document.body.addEventListener("click", (e) => {
+    // Close modal via Close Button
     if (e.target.closest(".close-btn-popup")) {
         const modal = e.target.closest(".modal");
-        if (modal) {
-            modal.classList.remove("active");
-            document.body.style.overflow = "auto";
-        }
+        closeModal(modal);
     }
-});
 
-document.body.addEventListener("click", (e) => {
+    // Close modal via Background Click
     if (e.target.classList.contains("modal")) {
-        e.target.classList.remove("active");
-        document.body.style.overflow = "auto";
+        closeModal(e.target);
     }
 });
 
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         const activeModal = document.querySelector(".modal.active");
-        if (activeModal) {
-            activeModal.classList.remove("active");
-            document.body.style.overflow = "auto";
-        }
+        closeModal(activeModal);
     }
 });

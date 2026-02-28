@@ -82,9 +82,19 @@ strong {
     letter-spacing: 1px;
 }
 
+.fancy-menu {
+    display: flex;
+    align-items: center;
+}
+
 .fancy-menu ul {
     display: flex;
     list-style: none;
+    align-items: center;
+}
+
+.fancy-menu li {
+    display: flex;
     align-items: center;
 }
 
@@ -94,6 +104,7 @@ strong {
     color: var(--my-grey);
     transition: color 0.3s;
     position: relative;
+    display: inline-block;
 }
 
 .fancy-menu li a:hover {
@@ -675,6 +686,7 @@ nav.fancy-menu ul li a:hover::after {
         user-select: none;
         caret-color: transparent;
         display: block;
+        position: relative;
     }
 
     .navTrigger i {
@@ -687,8 +699,6 @@ nav.fancy-menu ul li a:hover::after {
             transform 0.3s ease,
             opacity 0.3s ease;
     }
-
-    /* Transformation quand le hamburger est actif (en croix) */
     .navTrigger.active i:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -701,12 +711,10 @@ nav.fancy-menu ul li a:hover::after {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Pour que le logo ne soit pas masqué par le bouton hamburger */
     header .logo {
         margin-right: 0;
     }
 
-    /* Bandeau du menu latéral avec fond (glissant depuis la droite) */
     .fancy-menu {
         position: fixed;
         top: 0;
@@ -716,27 +724,33 @@ nav.fancy-menu ul li a:hover::after {
         background: #fff; /* Fond du bandeau */
         transition: right 0.3s ease-in-out;
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-        padding-top: 60px; /* Espace en haut pour le contenu */
+        padding-top: 60px;
         z-index: 1100;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    /* Lorsque le menu est activé, le bandeau glisse à sa place */
     .fancy-menu.active {
         right: 0;
     }
 
     .fancy-menu ul {
         margin: 0;
-        padding: 1rem;
+        padding: 40px 0 0 0;
         list-style: none;
         width: 100%;
         background: transparent;
     }
 
-    .fancy-menu ul li {
+    .fancy-menu li {
+        width: 100%;
+    }
+
+    .fancy-menu li a {
         display: block;
         padding: 15px 20px;
-        text-align: left;
+        text-align: center;
+        width: 100%;
         background: none;
         opacity: 0;
         transform: translateX(100%);
@@ -746,7 +760,11 @@ nav.fancy-menu ul li a:hover::after {
         margin: 0;
     }
 
-    /* Lorsque le menu est actif, les items apparaissent sans décalage */
+    .fancy-menu.active li a {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
     .fancy-menu.active ul li {
         opacity: 1;
         transform: translateX(0);
@@ -755,6 +773,24 @@ nav.fancy-menu ul li a:hover::after {
     .background-icon {
         width: 70vw;
         margin-top: 4rem;
+    }
+
+    .language-switcher {
+        padding: 15px 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: translateX(100%);
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    .fancy-menu.active .language-switcher {
+        opacity: 1;
+        transform: translateX(0);
     }
 
     .language-switcher button:first-child {
@@ -823,13 +859,13 @@ a:hover {
 
 .paragraph-icon {
     display: flex;
-    align-items: center; /* centre verticalement l'icône avec le texte */
-    gap: 10px; /* espace entre icône et texte */
-    margin-bottom: 15px; /* espace entre paragraphes */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 .paragraph-icon i {
-    font-size: 1.5em; /* taille des icônes */
+    font-size: 1.5em;
     color: var(--second-color);
 }
 
@@ -1113,8 +1149,8 @@ a:hover {
 }
 
 .resume-header.shrink {
-    height: 70px; /* hauteur réduite au scroll */
-    padding: 0.5rem 0; /* padding réduit pour effet fluide */
+    height: 70px;
+    padding: 0.5rem 0;
 }
 
 .profile-img {
@@ -1129,8 +1165,8 @@ a:hover {
 }
 
 .resume-header.shrink .profile-img {
-    opacity: 0; /* image disparaît */
-    transform: scale(0.5); /* image rétrécie un peu */
+    opacity: 0;
+    transform: scale(0.5);
     width: 0;
     margin: 0;
 }
@@ -1139,7 +1175,7 @@ a:hover {
     /* padding: 4rem 5%; */
     padding: 1rem 5%;
     background-color: #f8f8f8;
-    text-align: left; /* aligne le contenu à gauche */
+    text-align: left;
 }
 
 /* .skills h2 {
@@ -1541,7 +1577,7 @@ div.video {
 div.video video {
     width: 100%;
     height: auto;
-    max-width: 800px; /* limite la largeur sur grands écrans */
+    max-width: 800px;
     border-radius: 12px;
     display: block;
     margin: 0 auto;

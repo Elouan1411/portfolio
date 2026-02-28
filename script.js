@@ -29,9 +29,18 @@ function initScripts() {
     const fancyMenu = document.querySelector(".fancy-menu");
 
     if (navTrigger && fancyMenu) {
-        navTrigger.addEventListener("click", function () {
+        navTrigger.addEventListener("click", function (e) {
+            e.stopPropagation();
             this.classList.toggle("active");
             fancyMenu.classList.toggle("active");
+        });
+
+        // Close menu when clicking outside (on the body transparent part)
+        document.addEventListener("click", function (e) {
+            if (fancyMenu.classList.contains("active") && !fancyMenu.contains(e.target) && !navTrigger.contains(e.target)) {
+                navTrigger.classList.remove("active");
+                fancyMenu.classList.remove("active");
+            }
         });
     }
 
@@ -82,19 +91,43 @@ function initScripts() {
     initTerminal();
 }
 
+let terminalProcessId = 0;
+let terminalShowingSecret = false;
+
 function initTerminal() {
     const output = document.getElementById("terminal-text");
     const closeBtn = document.querySelector(".close-btn");
 
     if (!output) return;
 
+    terminalProcessId++;
+    const currentProcess = terminalProcessId;
+
+    const t = window.translations
+        ? window.translations[window.currentLang || "fr"]
+        : {
+              termWhoami: "elouan_boiteux",
+              termDir: "projets/ presentation.txt",
+              termJob: "Stagiaire chez Infomaniak",
+              termTech: "Dev Android / Kotlin",
+              termAccessing: "> Accès au répertoire",
+              termHidden: "caché...",
+              termHiddenFull: "> Accès au répertoire caché...",
+              termDecoding: "> Décodage du lien...",
+              termSuccess: "> Succès : CV localisé.",
+              termAltLink: "Alternativement :",
+          };
+
     function runTerminalEffect(lines, outputId, onFinish) {
         const outputEl = document.getElementById(outputId);
         if (!outputEl) return;
 
-        const cursor = outputEl.querySelector(".cursor") || document.createElement("span");
-        cursor.className = "cursor";
-        cursor.textContent = "█";
+        let cursor = outputEl.querySelector(".cursor");
+        if (!cursor) {
+            cursor = document.createElement("span");
+            cursor.className = "cursor";
+            cursor.textContent = "█";
+        }
 
         let lineIndex = 0;
         let charIndex = 0;
@@ -115,6 +148,8 @@ function initTerminal() {
         }
 
         function typeLine() {
+            if (currentProcess !== terminalProcessId) return; // Abort if a new process started
+
             if (lineIndex >= lines.length) {
                 if (onFinish) onFinish();
                 return;
@@ -147,73 +182,73 @@ function initTerminal() {
         typeLine();
     }
 
-    let showingSecret = false;
     let mainLines, secretLines;
 
     if (window.innerWidth < 768) {
         mainLines = [
             { text: "$ whoami", instant: false },
-            { text: "elouan_boiteux", instant: true },
+            { text: t.termWhoami, instant: true },
             { text: "$ cd ~/L3_Informatique", instant: false },
             { text: "$ ls", instant: false },
-            { text: "projets/ presentation.txt", instant: true },
+            { text: t.termDir, instant: true },
             { text: "$ cat presentation.txt", instant: false },
-            { text: "Stagiaire chez Infomaniak", instant: true },
-            { text: "Dev Android / Kotlin", instant: true },
+            { text: t.termJob, instant: true },
+            { text: t.termTech, instant: true },
             { text: "$ ", instant: false },
         ];
         secretLines = [
-            { text: "> Accessing hidden", instant: false },
-            { text: "directory...", instant: false },
-            { text: "> Decoding link...", instant: false },
-            { text: "> Success: CV located.", instant: false },
+            { text: t.termAccessing, instant: false },
+            { text: t.termHidden, instant: false },
+            { text: t.termDecoding, instant: false },
+            { text: t.termSuccess, instant: false },
         ];
     } else {
         mainLines = [
             { text: "$ whoami", instant: false },
-            { text: "elouan_boiteux", instant: true },
+            { text: t.termWhoami, instant: true },
             { text: "$ cd ~/L3_Informatique", instant: false },
             { text: "$ ls", instant: false },
-            { text: "projets/ presentation.txt", instant: true },
+            { text: t.termDir, instant: true },
             { text: "$ cat presentation.txt", instant: false },
-            { text: "Stagiaire chez Infomaniak", instant: true },
-            { text: "Dev Android / Kotlin", instant: true },
+            { text: t.termJob, instant: true },
+            { text: t.termTech, instant: true },
             { text: "$ ", instant: false },
         ];
         secretLines = [
-            { text: "> Accessing hidden directory...", instant: false },
-            { text: "> Decoding link...", instant: false },
-            { text: "> Success: CV located.", instant: false },
+            { text: t.termHiddenFull, instant: false },
+            { text: t.termDecoding, instant: false },
+            { text: t.termSuccess, instant: false },
         ];
     }
 
-    // Start initial effect
-    runTerminalEffect(mainLines, "terminal-text");
+    // Clear output if restarting
+    output.innerHTML = '<span class="cursor">█</span>';
+
+    // Start effect based on current state
+    if (terminalShowingSecret) {
+        runTerminalEffect(secretLines, "terminal-text", () => {
+            if (currentProcess !== terminalProcessId) return;
+            const div = document.createElement("div");
+            const alt = document.createElement("div");
+            alt.innerHTML = `<p class="cv-link">${t.termAltLink}\n<a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>`;
+            div.appendChild(qrImage);
+            output.appendChild(div);
+            output.appendChild(alt);
+        });
+    } else {
+        runTerminalEffect(mainLines, "terminal-text");
+    }
 
     if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-            output.innerHTML = '<span class="cursor">█</span>';
-            const existingQr = document.querySelector("#terminal-text img");
-            if (existingQr) existingQr.remove();
-
-            if (!showingSecret) {
-                showingSecret = true;
-                runTerminalEffect(secretLines, "terminal-text", () => {
-                    const div = document.createElement("div");
-                    const alt = document.createElement("div");
-                    alt.innerHTML =
-                        '<p class="cv-link">Alternatively:\n<a href="https://cv.elouanboiteux.fr" target="_blank">https://cv.elouanboiteux.fr</a></p>';
-                    div.appendChild(qrImage);
-                    output.appendChild(div);
-                    output.appendChild(alt);
-                });
-            } else {
-                showingSecret = false;
-                runTerminalEffect(mainLines, "terminal-text");
-            }
-        });
+        closeBtn.onclick = () => {
+            terminalShowingSecret = !terminalShowingSecret;
+            initTerminal();
+        };
     }
 }
+
+// Re-run terminal translation on language change
+window.addEventListener("languageChanged", initTerminal);
 
 // === Event Listener for Dynamic Content ===
 document.addEventListener("contentLoaded", initScripts);

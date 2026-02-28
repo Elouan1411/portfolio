@@ -158,7 +158,7 @@ function initTerminal() {
             { text: "$ ls", instant: false },
             { text: "projets/ presentation.txt", instant: true },
             { text: "$ cat presentation.txt", instant: false },
-            { text: "Stagiaire chez Informaniak", instant: true },
+            { text: "Stagiaire chez Infomaniak", instant: true },
             { text: "Dev Android / Kotlin", instant: true },
             { text: "$ ", instant: false },
         ];
@@ -176,7 +176,7 @@ function initTerminal() {
             { text: "$ ls", instant: false },
             { text: "projets/ presentation.txt", instant: true },
             { text: "$ cat presentation.txt", instant: false },
-            { text: "Stagiaire chez Informaniak", instant: true },
+            { text: "Stagiaire chez Infomaniak", instant: true },
             { text: "Dev Android / Kotlin", instant: true },
             { text: "$ ", instant: false },
         ];

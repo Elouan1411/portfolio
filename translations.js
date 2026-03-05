@@ -32,6 +32,7 @@ document.addEventListener("contentLoaded", function () {
             aboutPassion:
                 "Passionné par la <strong>programmation</strong> et le <strong>développement d’applications</strong>, j’aime transformer mes idées en projets concrets et profiter de chaque opportunité pour <strong>découvrir</strong> et <strong>apprendre</strong> de nouvelles technologies et techniques.",
             aboutDownloadCV: '<i class="fa fa-download"></i> Télécharger mon CV',
+            aboutDownloadCVSecondary: "Download my english resume",
             aboutQualitiesTitle: "Mes qualités",
             aboutQualities1: '<i class="fa-solid fa-bolt"></i> Dynamique',
             aboutQualities2: '<i class="fa-solid fa-user-check"></i> Autonome',
@@ -240,6 +241,7 @@ document.addEventListener("contentLoaded", function () {
             aboutPassion:
                 "Passionate about <strong>programming</strong> and <strong>app development</strong>, I love transforming my ideas into concrete projects and seizing every opportunity to <strong>discover</strong> and <strong>learn</strong> new technologies and techniques.",
             aboutDownloadCV: '<i class="fa fa-download"></i> Download my Resume',
+            aboutDownloadCVSecondary: "Télécharger mon CV français",
             aboutQualitiesTitle: "My qualities",
             aboutQualities1: '<i class="fa-solid fa-bolt"></i> Dynamic',
             aboutQualities2: '<i class="fa-solid fa-user-check"></i> Autonomous',
@@ -455,6 +457,18 @@ document.addEventListener("contentLoaded", function () {
                 elt.innerHTML = translations[currentLang][key];
             }
         });
+
+        const mainCvBtn = document.getElementById("main-cv-btn");
+        const secondaryCvLink = document.getElementById("secondary-cv-link");
+        if (mainCvBtn && secondaryCvLink) {
+            if (currentLang === "en") {
+                mainCvBtn.href = "assets/docs/CV_Elouan_BOITEUX_EN.pdf";
+                secondaryCvLink.href = "assets/docs/CV_Elouan_BOITEUX.pdf";
+            } else {
+                mainCvBtn.href = "assets/docs/CV_Elouan_BOITEUX.pdf";
+                secondaryCvLink.href = "assets/docs/CV_Elouan_BOITEUX_EN.pdf";
+            }
+        }
 
         if (!first) {
             window.dispatchEvent(new Event("languageChanged"));
